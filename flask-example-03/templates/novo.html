@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block titulo %}Novo recado{% endblock %}
+
+{% block conteudo %}
+  <h1>Novo recado</h1>
+
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.texto.label(class="form-label") }}
+      {{ form.texto(class="form-control") }}
+      {% for erro in form.texto.errors %}
+        <div class="text-danger small">{{ erro }}</div>
+      {% endfor %}
+      {{ form.descr.label(class="form-label") }}
+      {{ form.descr(class="form-control") }}
+      {% for erro in form.descr.errors %}
+        <div class="text-danger small">{{ erro }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      {{ form.enviar(class="btn btn-success mb-3") }}
+	  <a href="{{ url_for('index') }}"><input type="button" class="btn btn-danger mb-3" value="Cancelar"/></a>
+    </div>
+  </form>
+{% endblock %}

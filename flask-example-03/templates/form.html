@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block conteudo %}
+  <h1>{{ titulo }}</h1>
+
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    {% for campo in [form.texto, form.descr, form.categoria_id] %}
+      <div class="mb-3">
+        {{ campo.label(class="form-label") }}
+        {{ campo(class="form-select" if campo.type == "SelectField" else "form-control") }}
+        {% for erro in campo.errors %}
+          <div class="text-danger small">{{ erro }}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    {{ form.enviar(class="btn btn-success") }}
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block titulo %}Categorias{% endblock %}
+
+{% block conteudo %}
+  <h1>Categorias</h1>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr><th>Categoria</th><th>Recados</th></tr>
+    </thead>
+    <tbody>
+      {% for categoria in categorias %}
+        <tr>
+          <td>{{ categoria.nome }}</td>
+          <td>{{ categoria.recados|length }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
